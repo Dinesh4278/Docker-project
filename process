@@ -62,6 +62,8 @@ pipeline {
 }
 
 STEP-5: create the docker-compose.yml file to create the multiple container at a time
+
+
 version: '3.8'
 services:
   service1:
