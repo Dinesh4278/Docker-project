@@ -1,0 +1,107 @@
+STEP-1:  Create 3 servers with t2.medium and install docker and create cluster
+yum install docker -y
+systemctl start docker
+
+docker swarm init(mainserver)          //This is generate the token and copy paste the token in the worker nodes to join them as  a cluster
+docker node ls                        //This will list all the nodes that are attached to the server
+
+
+STEP-2:  Install jenkins on the main server
+
+#STEP-1: INSTALLING GIT JAVA-1.8.0 MAVEN 
+yum install git java-1.8.0-openjdk maven -y
+
+#STEP-2: GETTING THE REPO (jenkins.io --> download -- > redhat)
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+#STEP-3: DOWNLOAD JAVA11 AND JENKINS
+amazon-linux-extras install java-openjdk11 -y
+yum install jenkins -y
+update-alternatives --config java
+
+#STEP-4: RESTARTING JENKINS (when we download service it will on stopped state)
+systemctl start jenkins.service
+systemctl status jenkins.service
+
+
+STEP-3: Give permissions in the server to run the pipeline in the server
+
+chmod 777 /var/run/docker.sock
+systemctl daemon-reload
+systemctl restart docker.service
+
+STEP-4: Create the custome images using the dockerfile and move it to the docker hub using pipeline
+
+pipeline {
+    agent any
+    
+    stages {
+        stage('checkout') {
+            steps {
+                git 'https://github.com/devopsbyraham/dockermsproject.git'          //get the Dockerfile and index.html file to workspace
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'docker build -t $image .'                                      //build the custome image using the dockerfile and index.html file
+            }
+        }
+        stage('tag') {
+            steps {
+                sh 'docker tag $image $repo'                                       //Tag the image to move to the dockerhub
+            }
+        }
+        stage('push') {
+            steps {
+                sh 'docker login -u rahamshaik -p $password'                      //Credentials to login to the dockerhub
+                sh 'docker push $repo'                                            //Move the tagged image to the dockerhub
+            }
+        }
+    }
+}
+
+STEP-5: create the docker-compose.yml file to create the multiple container at a time
+version: '3.8'
+services:
+  service1:
+    image: $image
+    ports:
+      - "81:80"
+    deploy:
+      replicas: 3
+  service2:
+    image: $image
+    ports:
+      - "82:80"
+    deploy:
+      replicas: 3
+  service3:
+    image: $image
+    ports:
+      - "83:80"
+    deploy:
+      replicas: 3
+  service4:
+    image: $image
+    ports:
+      - "84:80"
+    deploy:
+      replicas: 3
+
+      
+STEP-6:  write the stage for the deployment in the pipeline using docker stack and docker-compose.yml file
+
+before we deploy using docker stack we need to set up docker stack
+
+Must have swarm mode and all ports enable with docker engine
+curl -L https://downloads.portainer.io/ce2-16/portainer-agent-stack.yml -o portainer-agent-stack.yml
+docker stack deploy -c portainer-agent-stack.yml portainer
+docker ps
+
+
+stage('deploy') {
+            steps {
+                sh 'docker stack deploy -c docker-compose.yml paytm'
+            }
+        }
