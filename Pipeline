@@ -1,0 +1,31 @@
+pipeline{
+    agent any
+    stages{
+        stage('checkout'){
+            steps{
+                git branch: 'main', url: 'https://github.com/Dinesh4278/Docker-project.git'
+            }
+        }
+        stage('image'){
+            steps{
+                sh 'docker build -t $image .'
+            }
+        }
+        stage('tag'){
+            steps{
+                sh 'docker tag $image $repo'
+            }
+        }
+        stage('push'){
+            steps{
+                sh 'docker login -u dinesh359 -p $password'
+                sh 'docker push $repo'
+            }
+        }
+        stage('deploy'){
+            steps{
+                sh 'docker stack deploy -c docker-compose.yml phonepe'
+            }
+        }
+    }
+}
