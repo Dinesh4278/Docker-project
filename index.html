@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PhonePe Train Ticket Booking</title>
+<title>PhonePe DTH Recharge</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -31,7 +30,13 @@
         font-weight: bold;
     }
     input[type="text"],
-    input[type="number"],
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
     select {
         width: 100%;
         padding: 10px;
@@ -56,30 +61,26 @@
 <body>
 
 <div class="container">
-    <h1>PhonePe Train Ticket Booking</h1>
-    <form id="ticket-booking-form">
+    <h1>PhonePe DTH Recharge</h1>
+    <form id="dth-recharge-form">
         <div class="form-group">
-            <label for="train">Select Train:</label>
-            <select id="train" name="train" required>
-                <option value="">Select Train</option>
-                <option value="12345">Train A</option>
-                <option value="67890">Train B</option>
-                <option value="54321">Train C</option>
+            <label for="provider">Select DTH Provider:</label>
+            <select id="provider" name="provider" required>
+                <option value="">Select Provider</option>
+                <option value="provider1">Provider 1</option>
+                <option value="provider2">Provider 2</option>
+                <option value="provider3">Provider 3</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="date">Date of Journey:</label>
-            <input type="date" id="date" name="date" required>
+            <label for="subscriber-id">Subscriber ID:</label>
+            <input type="text" id="subscriber-id" name="subscriber-id" required>
         </div>
         <div class="form-group">
-            <label for="passenger-name">Passenger Name:</label>
-            <input type="text" id="passenger-name" name="passenger-name" required>
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
         </div>
-        <div class="form-group">
-            <label for="passenger-age">Passenger Age:</label>
-            <input type="number" id="passenger-age" name="passenger-age" required>
-        </div>
-        <input type="submit" value="Book Ticket">
+        <input type="submit" value="Recharge">
     </form>
 </div>
 
