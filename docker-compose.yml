@@ -2,25 +2,25 @@ version: '3.7'
 services:
   DTH:
     image: dinesh359/phonepe_dth:latest
-    port:
+    ports:
       - "81:80"
     deploy:
       replicas: 3
   train:
     image: dinesh359/phonepe_train:latest
-    port:
+    ports:
       - "82:80"
     deploy:
       replicas: 3
   loan:
     image: dinesh359/phonepe_loan
-    port:
+    ports:
       - "83:80"
     deploy:
       replicas: 3
   recharge:
     image: dinesh359/phonepe_recharge:latest
-    port:
+    ports:
       - "84:80"
     deploy:
       replicas: 3
