@@ -94,8 +94,16 @@ services:
       
 STEP-6:  write the stage for the deployment in the pipeline using docker stack and docker-compose.yml file
 
-before we deploy using docker stack we need to set up docker stack
+before we deploy using docker stack we need to set up docker stack and docker compose
 
+docker-compose:
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+ls /usr/local/bin/
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose version
+
+docker stack:
 Must have swarm mode and all ports enable with docker engine
 curl -L https://downloads.portainer.io/ce2-16/portainer-agent-stack.yml -o portainer-agent-stack.yml
 docker stack deploy -c portainer-agent-stack.yml portainer
