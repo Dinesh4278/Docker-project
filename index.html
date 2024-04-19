@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PhonePe Loan Repayment</title>
+<title>PhonePe Recharge Page</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -37,13 +37,6 @@
         border-radius: 4px;
         box-sizing: border-box;
     }
-    select {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
     input[type="submit"] {
         width: 100%;
         padding: 10px;
@@ -61,27 +54,17 @@
 <body>
 
 <div class="container">
-    <h1>PhonePe Loan Repayment</h1>
-    <form id="loan-repayment-form">
+    <h1>PhonePe Recharge</h1>
+    <form id="recharge-form">
         <div class="form-group">
-            <label for="loan-id">Loan ID:</label>
-            <input type="text" id="loan-id" name="loan-id" required>
+            <label for="phone-number">Phone Number:</label>
+            <input type="text" id="phone-number" name="phone-number" required>
         </div>
         <div class="form-group">
             <label for="amount">Amount:</label>
             <input type="number" id="amount" name="amount" required>
         </div>
-        <div class="form-group">
-            <label for="payment-method">Payment Method:</label>
-            <select id="payment-method" name="payment-method" required>
-                <option value="">Select Payment Method</option>
-                <option value="credit-card">Credit Card</option>
-                <option value="debit-card">Debit Card</option>
-                <option value="upi">UPI</option>
-                <option value="wallet">PhonePe Wallet</option>
-            </select>
-        </div>
-        <input type="submit" value="Repay Loan">
+        <input type="submit" value="Recharge">
     </form>
 </div>
 
