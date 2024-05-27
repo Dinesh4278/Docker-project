@@ -39,7 +39,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                git 'https://github.com/devopsbyraham/dockermsproject.git'          //get the Dockerfile and index.html file to workspace
+                git 'https://github.com/Dinesh4278/Docker-project.git'          //get the Dockerfile and index.html file to workspace
             }
         }
         stage('build') {
@@ -54,7 +54,7 @@ pipeline {
         }
         stage('push') {
             steps {
-                sh 'docker login -u rahamshaik -p $password'                      //Credentials to login to the dockerhub
+                sh 'docker login -u dinesh359 -p $password'                      //Credentials to login to the dockerhub
                 sh 'docker push $repo'                                            //Move the tagged image to the dockerhub
             }
         }
