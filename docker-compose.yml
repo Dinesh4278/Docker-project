@@ -7,13 +7,13 @@ services:
     deploy:
       replicas: 3
   train:
-    image: dinesh359/phonepe_train:latest
+    image: dinesh359/phonepe_train_tickets:latest
     ports:
       - "82:80"
     deploy:
       replicas: 3
   loan:
-    image: dinesh359/phonepe_loan
+    image: dinesh359/phonepe_loan:latest
     ports:
       - "83:80"
     deploy:
