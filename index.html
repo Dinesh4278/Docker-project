@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PhonePe Train Ticket Booking</title>
+<title>PhonePe Recharge Page</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -30,8 +30,7 @@
         font-weight: bold;
     }
     input[type="text"],
-    input[type="number"],
-    select {
+    input[type="number"] {
         width: 100%;
         padding: 10px;
         border: 1px solid #ccc;
@@ -55,30 +54,17 @@
 <body>
 
 <div class="container">
-    <h1>PhonePe Train Ticket Booking</h1>
-    <form id="ticket-booking-form">
+    <h1>PhonePe Recharge</h1>
+    <form id="recharge-form">
         <div class="form-group">
-            <label for="train">Select Train:</label>
-            <select id="train" name="train" required>
-                <option value="">Select Train</option>
-                <option value="12345">Train A</option>
-                <option value="67890">Train B</option>
-                <option value="54321">Train C</option>
-            </select>
+            <label for="phone-number">Phone Number:</label>
+            <input type="text" id="phone-number" name="phone-number" required>
         </div>
         <div class="form-group">
-            <label for="date">Date of Journey:</label>
-            <input type="date" id="date" name="date" required>
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
         </div>
-        <div class="form-group">
-            <label for="passenger-name">Passenger Name:</label>
-            <input type="text" id="passenger-name" name="passenger-name" required>
-        </div>
-        <div class="form-group">
-            <label for="passenger-age">Passenger Age:</label>
-            <input type="number" id="passenger-age" name="passenger-age" required>
-        </div>
-        <input type="submit" value="Book Ticket">
+        <input type="submit" value="Recharge">
     </form>
 </div>
 
